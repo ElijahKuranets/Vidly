@@ -10,8 +10,16 @@ namespace Vidly.App_Start
         //MapperConfiguration mapFromDtoToConfig = new MapperConfiguration(cfg => cfg.CreateMap<CustomerDto, Customer>());
         public MappingProfile()
         {
+            //Domain to Dto
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
+            Mapper.CreateMap<Movie, MovieDto>();
+
+            //Dto to Domain
+            Mapper.CreateMap<CustomerDto, Customer>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
+            Mapper.CreateMap<MovieDto, Movie>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
+
         }
     }
 }
